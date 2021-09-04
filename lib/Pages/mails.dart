@@ -10,7 +10,8 @@ class MailsPage extends StatefulWidget {
   @override
   _MailsPageState createState() => _MailsPageState();
 }
-
+FirebaseAuth _auth =FirebaseAuth.instance;
+String email = _auth.currentUser.email.toString();
 class _MailsPageState extends State<MailsPage> {
   String profilepic = '';
   String currentemail;
@@ -101,11 +102,11 @@ title :Material(
         ),
       ),
       body:StreamBuilder(
-        stream: fb.collection('Inbox').snapshots(),
+        stream: fb.collection('user').doc(email).collection('inbox').snapshots(),
         
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if(!snapshot.hasData){
-            return CircularProgressIndicator();
+            return Center(child: Text('empty',style: TextStyle(color: Colors.grey),));
           }
           print(snapshot.data.docs);
           return ListView.builder(
