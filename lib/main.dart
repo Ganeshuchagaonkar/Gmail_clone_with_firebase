@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login/Pages/All_mails.dart';
 import 'package:login/Pages/mails.dart';
+import 'package:login/Pages/sentBox.dart';
 import 'package:login/fingerprint.dart';
 import 'package:login/login.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,8 +17,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'Flutter Demo',
+      routes: {
+        '/allinbox': (context) => MailsPage(),
+        '/sentbox' : (context) => SentBox(),
+        '/allmails' : (context) => All_Mails(),
+              },
       theme: ThemeData(
         // This is the theme of your application.
         //

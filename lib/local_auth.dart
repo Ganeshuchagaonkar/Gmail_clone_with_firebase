@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -10,6 +9,14 @@ class LocalAuthApi {
        return await _auth.canCheckBiometrics;
      } on PlatformException catch(e){
        return false;
+     }
+   }
+   static Future<List<BiometricType>> getBiometric()async{
+     
+     try{
+       return await _auth.getAvailableBiometrics();
+     } on PlatformException catch(e) {
+       return <BiometricType>[];
      }
    }
    static Future<bool> authenticate() async{
